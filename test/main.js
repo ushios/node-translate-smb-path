@@ -5,18 +5,39 @@ var SmbTranslater = require("../")
 
 describe('Samba Path Translater.', function(){
     it('SmbTranslater windows or not -> windows', function(){
-        var translater = new SmbTranslater()
+        var translater = new SmbTranslater('¥¥10.0.0.1¥foo¥var¥')
 
-        var winOrNot = translater.winOrNot('¥¥10.0.0.1¥foo¥var¥');
-
-        assert.equal(winOrNot, translater.OS_WINDOWS)
+        translater.isWindows.should.be.ok
     })
 
     it('SmbTranslater windows or not -> not windows', function(){
-        var translater = new SmbTranslater()
+        var translater = new SmbTranslater('smb://10.0.0.1/foo/var/')
 
-        var winOrNot = translater.winOrNot('smb://10.0.0.1/foo/var/');
+        translater.isWindows.should.be.ng
+    })
 
-        assert.equal(winOrNot, translater.OS_NOT_WINDOWS)
+    it('SmbTranslater windows or not -> failure', function(){
+
+        try {
+            var translater = new SmbTranslater('this is only string')
+        } catch(ex) {
+            true.should.be.ok
+
+            return true
+        }
+
+        assert.equal('aaa', 'bbb')
+    })
+
+    it('SmbTranslater get not windows path', function(){
+        var translater = new SmbTranslater('¥¥10.0.0.1¥foo¥var¥')
+
+        assert.equal(translater.getNotWindowsPath(), 'smb://10.0.0.1/foo/var/')
+    })
+
+    it('SmbTranslater get windows path', function(){
+        var translater = new SmbTranslater('smb://10.0.0.1/foo/var/')
+
+        assert.equal(translater.getWindowsPath(), '¥¥10.0.0.1¥foo¥var¥')
     })
 })
