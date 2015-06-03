@@ -1,0 +1,25 @@
+{
+  "name": "translate-smb-path",
+  "version": "0.0.1",
+  "description": "translate smb path.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ushios/node-translate-smb-path"
+  },
+  "keywords": [],
+  "author": "Ushio Shugo <ushio.s@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ushios/node-translate-smb-path/issues"
+  },
+  "homepage": "https://github.com/ushios/node-translate-smb-path",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^2.2.4",
+    "should": "^6.0.3"
+  }
+}
